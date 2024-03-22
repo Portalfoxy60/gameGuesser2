@@ -8,10 +8,10 @@ from sqlalchemy.orm import mapped_column
 from sqlalchemy.orm import relationship
 from sqlalchemy import create_engine
 
-class Base(DeclarativeBase):
+class Base(DeclarativeBase): # создание классов для подвязывания базы и программного кода через ОРМ
      pass
 
-class Category(Base):
+class Category(Base): # Класс для категории в базе данных, имеет значения айди, имени и списка слов
     __tablename__ = "categories"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(30))
@@ -20,7 +20,7 @@ class Category(Base):
         return f"Category(id={self.id!r}, name={self.name!r})"
 
 
-class Word(Base):
+class Word(Base): # класс для самих слов, имеет свои айди, сами слова, айди категории
     __tablename__ = "words"
     id: Mapped[int] = mapped_column(primary_key=True)
     word: Mapped[str] = mapped_column(String(30))
@@ -29,7 +29,7 @@ class Word(Base):
     def __repr__(self) -> str:
         return f"Word(id={self.id!r}, word={self.word!r}), categotyId={self.categoryId!r}, category={self.category!r}"
 
-class Player(Base):
+class Player(Base): # класс для игроков в базе, они имеют свой айди, имя и количество своих очков
     __tablename__ = "players"
     id: Mapped[int] = mapped_column(primary_key=True)
     name: Mapped[str] = mapped_column(String(20))
